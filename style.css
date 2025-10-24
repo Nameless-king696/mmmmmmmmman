@@ -123,6 +123,7 @@ body {
     border-radius: 4px;
     font-style: italic;
     color: #555;
+    /* يجب أن يكون مخفياً في البداية عند عرض السؤال */
     display: none; 
 }
 

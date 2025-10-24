@@ -176,7 +176,6 @@ const QUESTIONS_BANK = {
             correctAnswer: "b",
             explanation: "The Smooth ER in liver cells is responsible for conjugating (detoxifying) bilirubin. Underdevelopment of the SER in newborns leads to temporary unconjugated hyperbilirubinemia (jaundice)."
         },
-        // تم استثناء السؤال 20 لأنه يعتمد على معلومة 'clinical note' غير متوفرة.
     ],
     
     // Biochemistry Questions (BIO103) - السنة الأولى (بقي كما هو كمثال)
@@ -368,6 +367,7 @@ function navigateQuestion(direction) {
     const selector = `input[name=question${qNum}]:checked`;
     const userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
+    // التحقق من الإجابة عند الانتقال للأمام فقط (ما لم يكن السؤال الأخير وتم الضغط على Submit)
     if (direction > 0 && !userAnswer && currentQuestionIndex < currentQuestions.length) {
         alert("Please select an answer before proceeding.");
         return;
@@ -380,12 +380,15 @@ function navigateQuestion(direction) {
     currentQuestionIndex += direction;
 
     if (currentQuestionIndex < 0) {
+        // العودة إلى المرحلة 3
         navigateStep(-1);
     } 
     else if (currentQuestionIndex >= currentQuestions.length) {
+        // الانتقال إلى مرحلة التحقق (Submit)
         checkAnswers();
     }
     else {
+        // عرض السؤال التالي/السابق
         showQuestion();
     }
 }
@@ -443,11 +446,66 @@ function updateControls() {
     // التحكم في الأزرار في المراحل الأولية
     if (isInitialStage) {
         prevBtn.classList.toggle('hidden', currentStep <= 1);
-        nextBtn.classList.add('hidden');
+        nextBtn.classList.add('hidden'); // يتم الانتقال بالضغط على المربع في هذه المراحل
         submitBtn.classList.add('hidden');
+        
+        // إعادة تعيين وظيفة زر السابق للمراحل الأولية
+        prevBtn.onclick = () => navigateStep(-1); 
         return;
     }
 
     // التحكم في الأزرار بعد التسليم
     if (quizSubmitted) {
-        prevBtn
+        prevBtn.classList.add('hidden');
+        nextBtn.classList.add('hidden');
+        submitBtn.classList.add('hidden');
+        return;
+    }
+
+    // التحكم في الأزرار داخل مرحلة الأسئلة
+    if (isQuizStage) {
+        // زر السابق (Previous)
+        // يتم إخفاؤه في أول سؤال، ويظهر في باقي الأسئلة
+        prevBtn.classList.toggle('hidden', currentQuestionIndex === 0);
+        prevBtn.onclick = () => navigateQuestion(-1);
+        
+        // زر التالي / التسليم
+        if (currentQuestionIndex < currentQuestions.length - 1) {
+            // لم نصل إلى السؤال الأخير بعد
+            nextBtn.classList.remove('hidden');
+            nextBtn.textContent = 'Next Question';
+            nextBtn.onclick = () => navigateQuestion(1);
+            submitBtn.classList.add('hidden');
+        } else {
+            // السؤال الأخير - عرض زر التسليم
+            nextBtn.classList.add('hidden');
+            submitBtn.classList.remove('hidden');
+            submitBtn.textContent = 'Submit Quiz';
+            // نستخدم navigateQuestion(1) كـ action ليقوم بحفظ الإجابة ثم الانتقال إلى checkAnswers
+            submitBtn.onclick = () => navigateQuestion(1); 
+            submitBtn.disabled = false;
+        }
+    }
+}
+
+
+// --- Initial Setup (معدل لضمان ظهور الصفحة 1) ---
+document.addEventListener('DOMContentLoaded', () => {
+    // إخفاء جميع المراحل ما عدا الأولى (يجب أن تكون المرحلة 1 ظاهرة في HTML أساساً)
+    document.querySelectorAll('.step').forEach((step, index) => {
+        if (index > 0) {
+            step.classList.add('hidden');
+        }
+    });
+
+    // تحديث أزرار التحكم لعرض الحالة الأولية (المرحلة 1)
+    currentStep = 1;
+    updateControls();
+    
+    // إضافة مستمع للنقر على المرحلة 1 للانتقال إلى المرحلة 2
+    document.getElementById('step-1').addEventListener('click', () => {
+         if (currentStep === 1 && !quizSubmitted) {
+             navigateStep(1);
+         }
+    });
+});
