@@ -14,7 +14,11 @@ const SUBJECTS_DATA = [
     { year: 3, name: "Surgery Principles", code: "SURG301" },
     { year: 3, name: "Internal Medicine", code: "MED302" },
 
-    // --- Add more years/subjects as needed ---
+    // --- YEAR 4 (Example) ---
+    { year: 4, name: "Pediatrics", code: "PED401" },
+    
+    // --- YEAR 5 (Example) ---
+    { year: 5, name: "Clinical Skills", code: "CLIN501" },
 ];
 
 // Data Structure for Questions (MUST match the 'code' in SUBJECTS_DATA)
@@ -34,7 +38,6 @@ const QUESTIONS_BANK = {
             correctAnswer: "c",
             explanation: "The heart resides in the Thoracic cavity, specifically in the mediastinum."
         },
-        // Add more ANAT101 questions here
     ],
 
     // Questions for Medical Physiology (PHYS102)
@@ -45,10 +48,20 @@ const QUESTIONS_BANK = {
             correctAnswer: "b",
             explanation: "The Nephron is the structural and functional unit of the kidney, responsible for filtering blood."
         },
-        // Add more PHYS102 questions here
     ],
     
-    // You MUST add an array of questions for every 'code' defined above (e.g., PATH201, SURG301, etc.)
+    // Biochemistry Questions (BIO103)
+    "BIO103": [
+         { question: "What is the powerhouse of the cell?", answers: { a: "Nucleus", b: "Mitochondria", c: "Ribosome", d: "Cytoplasm" }, correctAnswer: "b", explanation: "Mitochondria generate most of the cell's supply of ATP, used as a source of chemical energy." }
+    ],
+    
+    // Empty arrays for other subjects until you add your questions
+    "PATH201": [],
+    "PHARM202": [],
+    "SURG301": [],
+    "MED302": [],
+    "PED401": [],
+    "CLIN501": [],
 };
 // -------------------------------------------------------------------------
 
@@ -128,7 +141,11 @@ function updateControls() {
     prevBtn.classList.toggle('hidden', currentStep <= 1);
 
     // Next button
+    // Next is ONLY hidden in steps 2 and 3 because the selection box handles the navigation.
     nextBtn.classList.toggle('hidden', currentStep >= totalSteps);
+    if (currentStep === 2 || currentStep === 3 || currentStep === 1) {
+        nextBtn.classList.add('hidden');
+    }
 
     // Submit button
     submitBtn.classList.toggle('hidden', currentStep < totalSteps);
@@ -169,7 +186,7 @@ function populateSubjects() {
     const subjectsForYear = SUBJECTS_DATA.filter(sub => sub.year === selectedYear);
     
     if (subjectsForYear.length === 0) {
-        subjectList.innerHTML = `<p>No subjects found for Year ${selectedYear}. Please add data in script.js.</p>`;
+        subjectList.innerHTML = `<p style="text-align:center;">No subjects found for Year ${selectedYear}. Please add data in script.js.</p>`;
         return;
     }
 
@@ -190,7 +207,7 @@ function loadAndBuildQuiz() {
     currentQuestions = QUESTIONS_BANK[selectedSubjectCode] || [];
     
     if (currentQuestions.length === 0) {
-        questionsDisplay.innerHTML = `<p>No questions found for the selected subject. Check QUESTIONS_BANK in script.js.</p>`;
+        questionsDisplay.innerHTML = `<p style="text-align:center;">No questions found for the selected subject. Check QUESTIONS_BANK in script.js.</p>`;
         submitBtn.classList.add('hidden');
         return;
     }
@@ -268,17 +285,12 @@ function checkAnswers() {
 document.addEventListener('DOMContentLoaded', () => {
     // Start by showing only the first step and updating controls
     updateControls();
-    // Special setup for step 1 which doesn't use the 'Next' button to transition
     document.getElementById('step-1').classList.remove('hidden');
-    // Hide 'Next' button for Step 1, user clicks a box in Step 2/3 to proceed.
-    nextBtn.classList.add('hidden'); 
     
-    // Add a listener to Step 1 to allow clicking anywhere to proceed to Step 2
+    // Add a listener to Step 1 to allow clicking anywhere in the container to proceed to Step 2
     document.getElementById('step-1').addEventListener('click', () => {
          if (currentStep === 1) {
              navigateStep(1);
-             // Re-enable the 'Next' button if needed, but we rely on box clicks in Step 2/3
-             nextBtn.classList.add('hidden'); 
          }
     });
 

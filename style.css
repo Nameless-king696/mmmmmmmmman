@@ -9,6 +9,8 @@ body {
     margin: 0;
     direction: ltr; 
     text-align: left;
+    padding: 20px; /* إضافة حشو (Padding) حول الجسم لتهوية المحتوى على الموبايل */
+    box-sizing: border-box;
 }
 
 .container {
@@ -16,9 +18,11 @@ body {
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    /* تثبيت العرض لضمان ثبات التخطيط على جميع الشاشات */
-    width: 800px; 
-    max-width: 800px; 
+    
+    /* تغيير: استخدام عرض مرن (95%) بحد أقصى 800 بكسل */
+    width: 95%; 
+    max-width: 800px; /* هذا هو أقصى حجم سيصل إليه على شاشات الكمبيوتر */
+    
     opacity: 0.95;
     margin-left: auto;
     margin-right: auto;
@@ -55,9 +59,9 @@ body {
 
 /* Stage 2 & 3: Selection Boxes (Vertical) */
 .year-selection, .subject-selection {
-    /* استخدام display: block لضمان الترتيب الرأسي والثابت */
+    /* تغيير: استخدام عرض مرن (100%) ليتجاوب مع حجم الحاوية (Container) */
     display: block; 
-    width: 740px; /* تم تعديل العرض ليتناسب مع الـ 800px Container */
+    width: 100%; 
     margin: 20px auto; 
 }
 
@@ -72,8 +76,8 @@ body {
     font-size: 1.1em;
     font-weight: bold;
     transition: all 0.3s;
-    /* مسافة سفلية للفصل بين المربعات */
     margin-bottom: 15px; 
+    box-sizing: border-box; /* لضمان أن الـ padding لا يزيد العرض الكلي عن 100% */
 }
 
 .year-box:hover, .subject-box:hover {
