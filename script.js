@@ -2,46 +2,32 @@
 // -------------------------------------------------------------------------
 const SUBJECTS_DATA = [
     // --- YEAR 1 ---
-    { year: 1, name: "General Anatomy", code: "ANAT101" },
-    { year: 1, name: "Medical Physiology", code: "PHYS102" },
+    { year: 1, name: "Physiology", code: "PHY101" },
+    { year: 1, name: "Histology", code: "HIS102" },
     { year: 1, name: "Biochemistry", code: "BIO103" },
     
     // --- YEAR 2 ---
-    { year: 2, name: "Pathology", code: "PATH201" },
-    { year: 2, name: "Pharmacology", code: "PHARM202" },
+    { year: 2, name: "Physiology", code: "PHY201" },
+    { year: 2, name: "Histology", code: "HIS202" },
+    { year: 2, name: "Biochemistry", code: "BIO203" },
     
     // --- YEAR 3 ---
-    { year: 3, name: "Surgery Principles", code: "SURG301" },
-    { year: 3, name: "Internal Medicine", code: "MED302" },
+    { year: 3, name: "Physiology", code: "PHY301" },
+    { year: 3, name: "Histology", code: "HIS302" },
+    { year: 3, name: "Biochemistry", code: "BIO303" },
 
-    // --- YEAR 4 (Example) ---
+    // --- YEAR 4 (بقي كما هو كمثال) ---
     { year: 4, name: "Pediatrics", code: "PED401" },
     
-    // --- YEAR 5 (Example) ---
+    // --- YEAR 5 (بقي كما هو كمثال) ---
     { year: 5, name: "Clinical Skills", code: "CLIN501" },
 ];
 
 // Data Structure for Questions (MUST match the 'code' in SUBJECTS_DATA)
 // -------------------------------------------------------------------------
 const QUESTIONS_BANK = {
-    // Questions for General Anatomy (ANAT101)
-    "ANAT101": [
-        {
-            question: "Which bone is commonly known as the collarbone?",
-            answers: { a: "Scapula", b: "Clavicle", c: "Sternum", d: "Humerus" },
-            correctAnswer: "b",
-            explanation: "The Clavicle is the collarbone and connects the shoulder girdle to the sternum."
-        },
-        {
-            question: "The heart is located in which body cavity?",
-            answers: { a: "Abdominal", b: "Cranial", c: "Thoracic", d: "Pelvic" },
-            correctAnswer: "c",
-            explanation: "The heart resides in the Thoracic cavity, specifically in the mediastinum."
-        },
-    ],
-
-    // Questions for Medical Physiology (PHYS102)
-    "PHYS102": [
+    // أسئلة للـ Physiology (PHY101) - السنة الأولى
+    "PHY101": [
         {
             question: "What is the primary function of the Nephron?",
             answers: { a: "Oxygen transport", b: "Blood filtration", c: "Hormone production", d: "Immune response" },
@@ -49,17 +35,25 @@ const QUESTIONS_BANK = {
             explanation: "The Nephron is the structural and functional unit of the kidney, responsible for filtering blood."
         },
     ],
-    
-    // Biochemistry Questions (BIO103)
+    // أسئلة للـ Histology (HIS102) - السنة الأولى
+    "HIS102": [
+        {
+            question: "Which type of tissue covers body surfaces and lines body cavities?",
+            answers: { a: "Connective tissue", b: "Muscle tissue", c: "Nervous tissue", d: "Epithelial tissue" },
+            correctAnswer: "d",
+            explanation: "Epithelial tissue (epithelium) forms protective barriers and secretory surfaces."
+        },
+    ],
+    // أسئلة للـ Biochemistry (BIO103) - السنة الأولى
     "BIO103": [
          { question: "What is the powerhouse of the cell?", answers: { a: "Nucleus", b: "Mitochondria", c: "Ribosome", d: "Cytoplasm" }, correctAnswer: "b", explanation: "Mitochondria generate most of the cell's supply of ATP, used as a source of chemical energy." }
     ],
     
-    // Empty arrays for other subjects until you add your questions
-    "PATH201": [],
-    "PHARM202": [],
-    "SURG301": [],
-    "MED302": [],
+    // رموز المواد الأخرى التي تم إضافتها حديثًا (لا تحتوي على أسئلة بعد):
+    "PHY201": [], "HIS202": [], "BIO203": [],
+    "PHY301": [], "HIS302": [], "BIO303": [],
+    
+    // رموز المواد الأخرى التي بقيت كما هي:
     "PED401": [],
     "CLIN501": [],
 };
