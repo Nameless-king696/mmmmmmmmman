@@ -16,10 +16,12 @@ body {
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    /* **التعديل الهام هنا لتثبيت العرض** */
-    width: 900px; /* تم تثبيت العرض */
-    max-width: 900px; /* لضمان عدم زيادة العرض */
+    /* تثبيت العرض لضمان ثبات التخطيط على جميع الشاشات */
+    width: 900px; 
+    max-width: 900px; 
     opacity: 0.95;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .centered-title {
@@ -53,10 +55,10 @@ body {
 
 /* Stage 2 & 3: Selection Boxes (Vertical) */
 .year-selection, .subject-selection {
-    display: flex;
-    flex-direction: column; 
-    gap: 15px; 
-    margin-top: 20px;
+    /* استخدام display: block لضمان الترتيب الرأسي والثابت */
+    display: block; 
+    width: 840px; /* عرض ثابت يضمن الثبات */
+    margin: 20px auto; 
 }
 
 .year-box, .subject-box {
@@ -70,6 +72,8 @@ body {
     font-size: 1.1em;
     font-weight: bold;
     transition: all 0.3s;
+    /* مسافة سفلية للفصل بين المربعات */
+    margin-bottom: 15px; 
 }
 
 .year-box:hover, .subject-box:hover {
@@ -138,14 +142,4 @@ body {
 }
 
 .control-btn {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#prev-btn { background-color: #6c757d; color: white; }
-#next-btn { background-color: #4682B4; color: white; }
-#submit-btn { background-color: #28a745; color: white; width: 100%; }
+    padding: 12px
