@@ -48,7 +48,7 @@ const QUESTIONS_BANK = {
         },
     ],
     
-    // Histology Questions (HIS102) - السنة الأولى - تم إضافة أسئلة "Cell 1" من الملف
+    // Histology Questions (HIS102) - السنة الأولى - أسئلة "Cell 1"
     "HIS102": [
         {
             question: "What is considered the structural and functional unit of the body?",
@@ -180,10 +180,9 @@ const totalSteps = 4;
 let selectedYear = null;
 let selectedSubjectCode = null;
 let currentQuestions = [];
-let currentQuestionIndex = 0;
-let userAnswers = {};
-let quizSubmitted = false;
-let questionChecked = false; // حالة جديدة: هل تم فحص الإجابة الحالية؟
+let currentQuestionIndex = 0; // مؤشر السؤال الحالي (في المرحلة 4)
+let userAnswers = {}; // لتخزين إجابات الطالب {0: 'a', 1: 'c', ...}
+let quizSubmitted = false; // حالة لتتبع ما إذا تم تسليم الاختبار
 
 const steps = document.querySelectorAll('.step');
 const nextBtn = document.getElementById('next-btn');
@@ -203,6 +202,7 @@ function navigateStep(direction) {
         return; 
     }
     
+    // إخفاء المرحلة الحالية
     document.getElementById(`step-${currentStep}`).classList.add('hidden');
 
     currentStep += direction;
@@ -213,12 +213,14 @@ function navigateStep(direction) {
         currentStep = totalSteps;
     }
     
+    // إعادة تعيين حالة الاختبار عند العودة من مرحلة الأسئلة
     if (currentStep < 4 && currentStep + direction > 4) {
         currentQuestionIndex = 0;
         userAnswers = {};
-        questionChecked = false; // إعادة تعيين
+        quizSubmitted = false;
     }
 
+    // إظهار المرحلة الجديدة
     document.getElementById(`step-${currentStep}`).classList.remove('hidden');
 
     if (currentStep === 3) {
@@ -232,16 +234,22 @@ function navigateStep(direction) {
 
 function validateCurrentStep() {
     if (currentStep === 1) return true;
+    
     if (currentStep === 2 && !selectedYear) {
         alert("Please select an Academic Year before proceeding.");
         return false;
     }
+    
     if (currentStep === 3 && !selectedSubjectCode) {
         alert("Please select a Subject before proceeding.");
         return false;
     }
+    
     return true;
 }
+
+
+// --- Step 2 & 3 Selection Functions ---
 
 function selectYear(year) {
     selectedYear = year;
@@ -249,6 +257,7 @@ function selectYear(year) {
         box.classList.remove('selected-item');
     });
     document.querySelector(`[data-year="${year}"]`).classList.add('selected-item');
+    
     selectedSubjectCode = null;
     navigateStep(1);
 }
@@ -259,6 +268,7 @@ function selectSubject(code) {
         box.classList.remove('selected-item');
     });
     document.querySelector(`[data-code="${code}"]`).classList.add('selected-item');
+    
     navigateStep(1);
 }
 
@@ -268,7 +278,7 @@ function populateSubjects() {
     const subjectsForYear = SUBJECTS_DATA.filter(sub => sub.year === selectedYear);
     
     if (subjectsForYear.length === 0) {
-        subjectList.innerHTML = `<p style="text-align:center;">No subjects found for Year ${selectedYear}.</p>`;
+        subjectList.innerHTML = `<p style="text-align:center;">No subjects found for Year ${selectedYear}. Please add data in script.js.</p>`;
         return;
     }
 
@@ -294,62 +304,32 @@ function loadAndBuildQuiz() {
     
     if (currentQuestions.length === 0) {
         questionsDisplay.innerHTML = `<p style="text-align:center;">No questions found for the selected subject.</p>`;
-        updateControls();
+        submitBtn.classList.add('hidden');
+        nextBtn.classList.add('hidden');
         return;
     }
     
     showQuestion();
 }
 
-// دالة لإعداد مستمعي الأحداث لأزرار الراديو
-function setupAnswerListeners() {
-    const answerContainer = questionsDisplay.querySelector('.answers');
-    if (!answerContainer) return;
-    
-    answerContainer.querySelectorAll('input[type="radio"]').forEach(input => {
-        input.addEventListener('change', () => {
-            // تفعيل زر Check/Next فقط إذا لم يتم فحص السؤال بعد
-            if (!questionChecked) {
-                updateControls(); 
-            }
-        });
-    });
-}
-
 function showQuestion() {
     questionsDisplay.innerHTML = '';
     
     if (currentQuestionIndex >= currentQuestions.length) {
-        // هذا السيناريو يجب أن لا يحدث إذا تم استخدام continueQuizOrSubmit بشكل صحيح
+        // إذا حاولنا عرض سؤال خارج النطاق، ننتقل للتحقق النهائي
+        checkAnswers();
         return;
     }
     
     const q = currentQuestions[currentQuestionIndex];
     const qNum = currentQuestionIndex;
     
-    questionChecked = false; // إعادة تعيين حالة الفحص لكل سؤال جديد
-    
     const answersHTML = [];
     for (const letter in q.answers) {
-        // إذا كان السؤال قد تم الإجابة عليه سابقًا، اعرض الحالة المحفوظة
         const isChecked = userAnswers[qNum] === letter ? 'checked' : '';
-        const isDisabled = userAnswers[qNum] !== undefined;
-        
-        // إذا كانت الإجابة السابقة موجودة، نطبق تنسيق التقييم الفوري لعرضه فورًا
-        let labelStyle = '';
-        if (isDisabled) {
-            if (userAnswers[qNum] === q.correctAnswer) {
-                 labelStyle = 'background-color: #d1ffc9; font-weight: bold;';
-            } else if (userAnswers[qNum] === letter) {
-                 labelStyle = 'background-color: #ffc9c9;'; // إجابة المستخدم الخاطئة
-            } else if (q.correctAnswer === letter) {
-                 labelStyle = 'background-color: #d1ffc9; font-weight: bold;'; // الإجابة الصحيحة غير المختارة
-            }
-        }
-
         answersHTML.push(
-            `<label style="${labelStyle}">
-                <input type="radio" name="question${qNum}" value="${letter}" ${isChecked} ${isDisabled ? 'disabled' : ''}>
+            `<label>
+                <input type="radio" name="question${qNum}" value="${letter}" ${isChecked}>
                 ${q.answers[letter]}
             </label>`
         );
@@ -358,86 +338,56 @@ function showQuestion() {
     questionsDisplay.innerHTML = `
         <div class="question">Q${qNum + 1} of ${currentQuestions.length}: ${q.question}</div>
         <div class="answers">${answersHTML.join('')}</div>
-        <div id="feedback-${qNum}" class="feedback-message" style="display: ${userAnswers[qNum] !== undefined ? 'block' : 'none'}; color: ${userAnswers[qNum] === q.correctAnswer ? 'green' : 'red'};">
-            ${userAnswers[qNum] !== undefined ? (userAnswers[qNum] === q.correctAnswer ? '✅ **Correct Answer!**' : '❌ **Incorrect Answer.**') : ''}
-        </div>
-        <div class="explanation ${userAnswers[qNum] !== undefined ? '' : 'hidden'}" id="exp-${qNum}">
+        <div class="explanation hidden" id="exp-${qNum}">
             <strong>Explanation:</strong> ${q.explanation}
         </div>
     `;
     
-    // إذا كان السؤال قد تم فحصه، اضبط الحالة لـ checked
-    if (userAnswers[qNum] !== undefined) {
-        questionChecked = true; 
-    } else {
-        setupAnswerListeners(); 
-    }
-    
+    // ربط زر "Previous" و "Next" بوظيفة التنقل بين الأسئلة
+    prevBtn.onclick = () => navigateQuestion(-1);
+    nextBtn.onclick = () => navigateQuestion(1);
+
     updateControls();
 }
 
-function checkAnswerAndReveal() {
+
+function navigateQuestion(direction) {
     const qNum = currentQuestionIndex;
-    const q = currentQuestions[qNum];
     const answerContainer = questionsDisplay.querySelector('.answers');
     const selector = `input[name=question${qNum}]:checked`;
-    const userAnswerInput = answerContainer.querySelector(selector);
-    const feedbackDiv = document.getElementById(`feedback-${qNum}`);
-    
-    if (!userAnswerInput) {
-        alert("Please select an answer before checking.");
+    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+    // لا يمكن الانتقال للأمام إذا لم يتم اختيار إجابة (في حالة لم يكن السؤال الأخير وتم الضغط على Submit)
+    if (direction > 0 && !userAnswer && currentQuestionIndex < currentQuestions.length - 1) {
+        alert("Please select an answer before proceeding.");
         return;
     }
-
-    const userAnswer = userAnswerInput.value;
-    userAnswers[qNum] = userAnswer; 
-
-    questionChecked = true; 
     
-    const isCorrect = userAnswer === q.correctAnswer;
-    
-    // Display immediate feedback
-    feedbackDiv.innerHTML = isCorrect ? '✅ **Correct Answer!**' : '❌ **Incorrect Answer.**';
-    feedbackDiv.style.color = isCorrect ? 'green' : 'red';
-    feedbackDiv.style.display = 'block';
-    
-    // Highlight correct answer
-    const correctLabel = answerContainer.querySelector(`input[value=${q.correctAnswer}]`).parentNode;
-    if(correctLabel) {
-        correctLabel.style.backgroundColor = '#d1ffc9'; // Light Green
-        correctLabel.style.fontWeight = 'bold';
+    // حفظ الإجابة الحالية
+    if (userAnswer) {
+        userAnswers[qNum] = userAnswer;
     }
-    
-    // Highlight incorrect user answer (if incorrect)
-    if (!isCorrect) {
-        const incorrectLabel = userAnswerInput.parentNode;
-        if(incorrectLabel) {
-            incorrectLabel.style.backgroundColor = '#ffc9c9'; // Light Red
-        }
+
+    currentQuestionIndex += direction;
+
+    if (currentQuestionIndex < 0) {
+        // العودة إلى المرحلة 3
+        navigateStep(-1);
+    } 
+    else if (currentQuestionIndex >= currentQuestions.length) {
+        // الانتقال إلى مرحلة التحقق (Submit)
+        checkAnswers();
     }
-    
-    // Display explanation
-    document.getElementById(`exp-${qNum}`).classList.remove('hidden');
-
-    // Disable all radio buttons
-    answerContainer.querySelectorAll('input').forEach(input => input.disabled = true);
-    
-    updateControls(); 
-}
-
-function continueQuizOrSubmit() {
-    currentQuestionIndex++;
-    
-    if (currentQuestionIndex >= currentQuestions.length) {
-        // آخر سؤال تم الإجابة عليه، انتقل إلى ملخص النتائج النهائية
-        showFinalSummary(); 
-    } else {
-        // انتقل إلى السؤال التالي
+    else {
+        // عرض السؤال التالي/السابق
         showQuestion();
     }
 }
 
-function showFinalSummary() {
+
+function checkAnswers() {
+    if (quizSubmitted) return;
+    
     questionsDisplay.innerHTML = '';
     quizSubmitted = true;
     
@@ -474,33 +424,28 @@ function showFinalSummary() {
 
     resultContainer.innerHTML = `You scored ${numCorrect} out of ${totalQuestions}.`;
     
-    updateControls();
-}
-
-// دالة checkAnswers القديمة لضمان عدم حدوث خطأ إذا تم استدعاؤها
-function checkAnswers() {
-    showFinalSummary();
+    updateControls(); 
 }
 
 
-// --- Controls Update (منطق الأزرار الديناميكي) ---
+// --- Controls Update ---
 
 function updateControls() {
     const isQuizStage = currentStep === 4 && !quizSubmitted;
+    const isInitialStage = currentStep < 4;
 
-    // المراحل الأولية (1، 2، 3)
-    if (currentStep < 4) {
+    // التحكم في الأزرار في المراحل الأولية
+    if (isInitialStage) {
         prevBtn.classList.toggle('hidden', currentStep <= 1);
-        nextBtn.classList.add('hidden'); 
+        nextBtn.classList.add('hidden'); // يتم الانتقال بالضغط على المربع في هذه المراحل
         submitBtn.classList.add('hidden');
         
-        // إعادة تعيين وظيفة زر السابق للمراحل الأولية
-        prevBtn.onclick = () => navigateStep(-1); 
-        nextBtn.onclick = () => navigateStep(1); // تم إظهار زر Next في HTML مؤخراً، نعد وظيفته للمراحل الأولية
+        // ربط زر Previous بوظيفة التنقل بين المراحل
+        prevBtn.onclick = () => navigateStep(-1);
         return;
     }
 
-    // بعد التسليم النهائي
+    // التحكم في الأزرار بعد التسليم (الملخص النهائي)
     if (quizSubmitted) {
         prevBtn.classList.add('hidden');
         nextBtn.classList.add('hidden');
@@ -508,38 +453,26 @@ function updateControls() {
         return;
     }
 
-    // داخل مرحلة الأسئلة (4)
+    // التحكم في الأزرار داخل مرحلة الأسئلة (سؤال واحد في الصفحة)
     if (isQuizStage) {
-        const isLastQuestion = currentQuestionIndex === currentQuestions.length - 1;
-        const answerSelected = questionsDisplay.querySelector(`input[name=question${currentQuestionIndex}]:checked`);
-
-        submitBtn.classList.add('hidden');
-
+        
         // زر السابق (Previous)
+        // يتم إخفاؤه في أول سؤال
         prevBtn.classList.toggle('hidden', currentQuestionIndex === 0);
-        prevBtn.onclick = () => {
-            currentQuestionIndex--;
-            showQuestion();
-        };
-
-        // زر التالي (Check/Continue)
-        nextBtn.classList.remove('hidden');
-
-        if (!questionChecked) {
-            // الحالة 1: بانتظار التحقق
-            nextBtn.textContent = 'Check Answer';
-            // تفعيل الزر فقط إذا تم اختيار إجابة
-            nextBtn.disabled = !answerSelected;
-            nextBtn.onclick = checkAnswerAndReveal;
+        
+        // زر التالي / التسليم
+        if (currentQuestionIndex < currentQuestions.length - 1) {
+            // لم نصل إلى السؤال الأخير بعد
+            nextBtn.classList.remove('hidden');
+            nextBtn.textContent = 'Next Question';
+            submitBtn.classList.add('hidden');
         } else {
-            // الحالة 2: بانتظار المتابعة للسؤال التالي
-            nextBtn.disabled = false;
-            if (isLastQuestion) {
-                nextBtn.textContent = 'Finish Quiz & See Results';
-            } else {
-                nextBtn.textContent = 'Continue (Next Question)';
-            }
-            nextBtn.onclick = continueQuizOrSubmit;
+            // السؤال الأخير - عرض زر التسليم
+            nextBtn.classList.add('hidden');
+            submitBtn.classList.remove('hidden');
+            submitBtn.textContent = 'Submit Quiz';
+            submitBtn.onclick = () => navigateQuestion(1); // ينتقل للأمام لحفظ الإجابة ثم checkAnswers
+            submitBtn.disabled = false;
         }
     }
 }
@@ -547,13 +480,14 @@ function updateControls() {
 
 // --- Initial Setup ---
 document.addEventListener('DOMContentLoaded', () => {
-    // إخفاء جميع المراحل ما عدا الأولى
+    // إخفاء جميع المراحل ما عدا الأولى (يجب أن تكون المرحلة 1 ظاهرة في HTML أساساً)
     document.querySelectorAll('.step').forEach((step, index) => {
         if (index > 0) {
             step.classList.add('hidden');
         }
     });
 
+    // تحديث أزرار التحكم لعرض الحالة الأولية (المرحلة 1)
     currentStep = 1;
     updateControls();
     
