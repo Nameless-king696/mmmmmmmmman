@@ -1,58 +1,13 @@
-/* أضف هذا التنسيق إلى ملف style.css */
+/* ... (التنسيقات السابقة) ... */
 
-.hidden {
-    display: none !important;
-}
-
-.selection-input {
-    width: 100%;
+/* New Style for Fixed Information (NUB) */
+.fixed-info {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #007bff; /* لون مميز */
     padding: 10px;
     margin-top: 15px;
-    font-size: 1.1em;
-    border: 1px solid #ccc;
+    background-color: #e9f7ff; /* خلفية فاتحة */
+    border: 1px solid #b3e0ff;
     border-radius: 4px;
-    box-sizing: border-box; /* لضمان أن الحجم يشمل الـ padding والـ border */
-}
-
-.controls {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.control-btn {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-/* تنسيق زر السابق */
-#prev-btn {
-    background-color: #6c757d; /* رمادي */
-    color: white;
-}
-#prev-btn:hover {
-    background-color: #5a6268;
-}
-
-/* تنسيق زر التالي */
-#next-btn {
-    background-color: #007bff; /* أزرق */
-    color: white;
-}
-#next-btn:hover {
-    background-color: #0056b3;
-}
-
-/* تنسيق زر إنهاء الاختبار (كما في السابق) */
-#submit-btn {
-    background-color: #28a745;
-    color: white;
-    width: 100%; /* اجعله يملأ المساحة عند إخفاء الأزرار الأخرى */
-}
-#submit-btn:hover {
-    background-color: #218838;
 }
