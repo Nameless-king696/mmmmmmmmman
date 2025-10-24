@@ -17,8 +17,8 @@ body {
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     /* تثبيت العرض لضمان ثبات التخطيط على جميع الشاشات */
-    width: 900px; 
-    max-width: 900px; 
+    width: 800px; 
+    max-width: 800px; 
     opacity: 0.95;
     margin-left: auto;
     margin-right: auto;
@@ -57,7 +57,7 @@ body {
 .year-selection, .subject-selection {
     /* استخدام display: block لضمان الترتيب الرأسي والثابت */
     display: block; 
-    width: 840px; /* عرض ثابت يضمن الثبات */
+    width: 740px; /* تم تعديل العرض ليتناسب مع الـ 800px Container */
     margin: 20px auto; 
 }
 
@@ -142,4 +142,14 @@ body {
 }
 
 .control-btn {
-    padding: 12px
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#prev-btn { background-color: #6c757d; color: white; }
+#next-btn { background-color: #4682B4; color: white; }
+#submit-btn { background-color: #28a745; color: white; width: 100%; }
