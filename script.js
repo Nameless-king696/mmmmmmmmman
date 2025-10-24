@@ -51,126 +51,108 @@ const QUESTIONS_BANK = {
     // Histology Questions (HIS102) - السنة الأولى - تم إضافة أسئلة "Cell 1" من الملف
     "HIS102": [
         {
-            // السؤال 1 من الملف
             question: "What is considered the structural and functional unit of the body?",
             answers: { a: "Tissue", b: "Organ", c: "Cell", d: "Nucleus" },
             correctAnswer: "c",
             explanation: "The cell is universally recognized as the basic structural and functional unit of life."
         },
         {
-            // السؤال 3 من الملف
             question: "The cytoplasm is composed of all except:",
             answers: { a: "Cytosol", b: "Organelles", c: "Nucleus", d: "Inclusions" },
             correctAnswer: "c",
             explanation: "Cytoplasm includes the cytosol, organelles, and inclusions, but the Nucleus is a separate structure and is not part of the cytoplasm."
         },
         {
-            // السؤال 4 من الملف
             question: "The glycocalyx is composed of:",
             answers: { a: "Cholesterol", b: "Glycoproteins and glycolipids", c: "Phospholipids only", d: "Peripheral proteins" },
             correctAnswer: "b",
             explanation: "The glycocalyx (cell coat) is primarily formed by glycoproteins and glycolipids attached to the outer surface of the cell membrane."
         },
         {
-            // السؤال 5 من الملف
             question: "The trilaminar structure of the cell membrane is best seen by:",
             answers: { a: "Light microscope", b: "Silver stain", c: "Electron microscope", d: "Fluorescence microscope" },
             correctAnswer: "c",
             explanation: "The extremely thin trilaminar structure of the cell membrane can only be resolved by the high magnification and resolution of the Electron Microscope."
         },
         {
-            // السؤال 6 من الملف
             question: "The hydrophobic tails of phospholipids in the cell membrane face:",
             answers: { a: "Outside of the membrane", b: "Cytoplasm", c: "Extracellular space", d: "Each other (towards the inside of the bilayer)" },
             correctAnswer: "d",
             explanation: "The hydrophobic (water-hating) tails face inwards, shielded from the aqueous environment (cytoplasm and extracellular fluid) by the hydrophilic heads."
         },
         {
-            // السؤال 7 من الملف
             question: "Which of the following proteins are embedded within the phospholipid bilayer?",
             answers: { a: "Peripheral proteins", b: "Extrinsic proteins", c: "Integral (intrinsic) proteins", d: "Enzymes" },
             correctAnswer: "c",
             explanation: "Integral or intrinsic proteins penetrate or pass entirely through the phospholipid bilayer, unlike peripheral (extrinsic) proteins which are only on the surface."
         },
         {
-            // السؤال 8 من الملف
             question: "What is the main function of mitochondria?",
             answers: { a: "Protein synthesis", b: "Detoxification", c: "Energy production", d: "DNA replication" },
             correctAnswer: "c",
             explanation: "Mitochondria are known as the 'powerhouse of the cell' because their main function is the production of ATP (energy) through cellular respiration."
         },
         {
-            // السؤال 9 من الملف
             question: "Mitochondria are more abundant in:",
             answers: { a: "Fat cells", b: "Inactive cells", c: "Active cells", d: "Dead cells" },
             correctAnswer: "c",
             explanation: "Mitochondria are abundant in metabolically active cells (e.g., liver, muscle) to meet their high energy demands."
         },
         {
-            // السؤال 10 من الملف
             question: "Which of the following is a special stain used for mitochondria?",
             answers: { a: "Silver stain", b: "PAS", c: "Janus green", d: "Eosin" },
             correctAnswer: "c",
             explanation: "Janus green is a vital stain specifically used to visualize mitochondria in living cells."
         },
         {
-            // السؤال 11 من الملف
             question: "The cristae in mitochondria are found in:",
             answers: { a: "Outer membrane", b: "Golgi body", c: "Inner membrane", d: "Ribosomes" },
             correctAnswer: "c",
             explanation: "The cristae are the folds of the inner mitochondrial membrane, increasing the surface area for cellular respiration."
         },
         {
-            // السؤال 12 من الملف
             question: "Which of the following allows mitochondria to self-replicate?",
             answers: { a: "Cristae", b: "Matrix granules", c: "Presence of their own DNA", d: "Calcium stores" },
             correctAnswer: "c",
             explanation: "Mitochondria contain their own circular DNA, allowing them to synthesize some of their proteins and replicate independently."
         },
         {
-            // السؤال 13 من الملف
             question: "Which organelle is basophilic under the light microscope due to ribosomes?",
             answers: { a: "Smooth ER", b: "Mitochondria", c: "Golgi apparatus", d: "Rough ER" },
             correctAnswer: "d",
             explanation: "The Rough Endoplasmic Reticulum (RER) is coated with ribosomes, which stain blue/purple (basophilic) with common histological stains because of their RNA content."
         },
         {
-            // السؤال 14 من الملف
             question: "The main function of rough endoplasmic reticulum is:",
             answers: { a: "Steroid synthesis", b: "Protein synthesis", c: "Calcium storage", d: "Lipid metabolism" },
             correctAnswer: "b",
             explanation: "The RER's primary function is the synthesis, modification, and transport of proteins destined for secretion or insertion into membranes."
         },
         {
-            // السؤال 15 من الملف
             question: "Which organelle is abundant in steroid-forming cells?",
             answers: { a: "Rough ER", b: "Golgi apparatus", c: "Smooth ER", d: "Nucleolus" },
             correctAnswer: "c",
             explanation: "The Smooth Endoplasmic Reticulum (SER) is highly developed in cells that synthesize steroid hormones (e.g., adrenal cortex, gonads)."
         },
         {
-            // السؤال 16 من الملف
             question: "Which of the following is not a function of the smooth ER?",
             answers: { a: "Detoxification", b: "Protein synthesis", c: "Steroid hormone synthesis", d: "Lipid metabolism" },
             correctAnswer: "b",
             explanation: "Protein synthesis is primarily the function of the Rough ER and free ribosomes, not the Smooth ER."
         },
         {
-            // السؤال 17 من الملف
             question: "What is the function of matrix granules in mitochondria?",
             answers: { a: "ATP synthesis", b: "Protein synthesis", c: "Calcium storage", d: "Lipid storage" },
             correctAnswer: "c",
             explanation: "Mitochondrial matrix granules are known to be sites for the storage and regulation of divalent cations, most notably calcium."
         },
         {
-            // السؤال 18 من الملف
             question: "The cell coat (glycocalyx) is involved in all of the following except:",
             answers: { a: "Adhesion", b: "Recognition", c: "Rejection", d: "Energy production" },
             correctAnswer: "d",
             explanation: "The glycocalyx is involved in cell-to-cell recognition, adhesion, and immune responses (rejection), but its primary role does not include energy production."
         },
         {
-            // السؤال 19 من الملف
             question: "Neonatal jaundice is related to:",
             answers: { a: "Damaged mitochondria", b: "Underdeveloped smooth ER in liver", c: "Lack of rough ER in liver", d: "Absence of Golgi apparatus" },
             correctAnswer: "b",
@@ -198,9 +180,10 @@ const totalSteps = 4;
 let selectedYear = null;
 let selectedSubjectCode = null;
 let currentQuestions = [];
-let currentQuestionIndex = 0; // مؤشر السؤال الحالي (في المرحلة 4)
-let userAnswers = {}; // لتخزين إجابات الطالب {0: 'a', 1: 'c', ...}
-let quizSubmitted = false; // حالة لتتبع ما إذا تم تسليم الاختبار
+let currentQuestionIndex = 0;
+let userAnswers = {};
+let quizSubmitted = false;
+let questionChecked = false; // حالة جديدة: هل تم فحص الإجابة الحالية؟
 
 const steps = document.querySelectorAll('.step');
 const nextBtn = document.getElementById('next-btn');
@@ -233,6 +216,7 @@ function navigateStep(direction) {
     if (currentStep < 4 && currentStep + direction > 4) {
         currentQuestionIndex = 0;
         userAnswers = {};
+        questionChecked = false; // إعادة تعيين
     }
 
     document.getElementById(`step-${currentStep}`).classList.remove('hidden');
@@ -247,25 +231,17 @@ function navigateStep(direction) {
 }
 
 function validateCurrentStep() {
-    if (currentStep === 1) {
-        return true;
-    }
-    
+    if (currentStep === 1) return true;
     if (currentStep === 2 && !selectedYear) {
         alert("Please select an Academic Year before proceeding.");
         return false;
     }
-    
     if (currentStep === 3 && !selectedSubjectCode) {
         alert("Please select a Subject before proceeding.");
         return false;
     }
-    
     return true;
 }
-
-
-// --- Step 2 & 3 Selection Functions ---
 
 function selectYear(year) {
     selectedYear = year;
@@ -273,7 +249,6 @@ function selectYear(year) {
         box.classList.remove('selected-item');
     });
     document.querySelector(`[data-year="${year}"]`).classList.add('selected-item');
-    
     selectedSubjectCode = null;
     navigateStep(1);
 }
@@ -284,7 +259,6 @@ function selectSubject(code) {
         box.classList.remove('selected-item');
     });
     document.querySelector(`[data-code="${code}"]`).classList.add('selected-item');
-    
     navigateStep(1);
 }
 
@@ -294,7 +268,7 @@ function populateSubjects() {
     const subjectsForYear = SUBJECTS_DATA.filter(sub => sub.year === selectedYear);
     
     if (subjectsForYear.length === 0) {
-        subjectList.innerHTML = `<p style="text-align:center;">No subjects found for Year ${selectedYear}. Please add data in script.js.</p>`;
+        subjectList.innerHTML = `<p style="text-align:center;">No subjects found for Year ${selectedYear}.</p>`;
         return;
     }
 
@@ -320,31 +294,62 @@ function loadAndBuildQuiz() {
     
     if (currentQuestions.length === 0) {
         questionsDisplay.innerHTML = `<p style="text-align:center;">No questions found for the selected subject.</p>`;
-        submitBtn.classList.add('hidden');
-        nextBtn.classList.add('hidden');
+        updateControls();
         return;
     }
     
     showQuestion();
 }
 
+// دالة لإعداد مستمعي الأحداث لأزرار الراديو
+function setupAnswerListeners() {
+    const answerContainer = questionsDisplay.querySelector('.answers');
+    if (!answerContainer) return;
+    
+    answerContainer.querySelectorAll('input[type="radio"]').forEach(input => {
+        input.addEventListener('change', () => {
+            // تفعيل زر Check/Next فقط إذا لم يتم فحص السؤال بعد
+            if (!questionChecked) {
+                updateControls(); 
+            }
+        });
+    });
+}
+
 function showQuestion() {
     questionsDisplay.innerHTML = '';
     
     if (currentQuestionIndex >= currentQuestions.length) {
-        checkAnswers();
+        // هذا السيناريو يجب أن لا يحدث إذا تم استخدام continueQuizOrSubmit بشكل صحيح
         return;
     }
     
     const q = currentQuestions[currentQuestionIndex];
     const qNum = currentQuestionIndex;
     
+    questionChecked = false; // إعادة تعيين حالة الفحص لكل سؤال جديد
+    
     const answersHTML = [];
     for (const letter in q.answers) {
+        // إذا كان السؤال قد تم الإجابة عليه سابقًا، اعرض الحالة المحفوظة
         const isChecked = userAnswers[qNum] === letter ? 'checked' : '';
+        const isDisabled = userAnswers[qNum] !== undefined;
+        
+        // إذا كانت الإجابة السابقة موجودة، نطبق تنسيق التقييم الفوري لعرضه فورًا
+        let labelStyle = '';
+        if (isDisabled) {
+            if (userAnswers[qNum] === q.correctAnswer) {
+                 labelStyle = 'background-color: #d1ffc9; font-weight: bold;';
+            } else if (userAnswers[qNum] === letter) {
+                 labelStyle = 'background-color: #ffc9c9;'; // إجابة المستخدم الخاطئة
+            } else if (q.correctAnswer === letter) {
+                 labelStyle = 'background-color: #d1ffc9; font-weight: bold;'; // الإجابة الصحيحة غير المختارة
+            }
+        }
+
         answersHTML.push(
-            `<label>
-                <input type="radio" name="question${qNum}" value="${letter}" ${isChecked}>
+            `<label style="${labelStyle}">
+                <input type="radio" name="question${qNum}" value="${letter}" ${isChecked} ${isDisabled ? 'disabled' : ''}>
                 ${q.answers[letter]}
             </label>`
         );
@@ -353,50 +358,86 @@ function showQuestion() {
     questionsDisplay.innerHTML = `
         <div class="question">Q${qNum + 1} of ${currentQuestions.length}: ${q.question}</div>
         <div class="answers">${answersHTML.join('')}</div>
-        <div class="explanation hidden" id="exp-${qNum}">
+        <div id="feedback-${qNum}" class="feedback-message" style="display: ${userAnswers[qNum] !== undefined ? 'block' : 'none'}; color: ${userAnswers[qNum] === q.correctAnswer ? 'green' : 'red'};">
+            ${userAnswers[qNum] !== undefined ? (userAnswers[qNum] === q.correctAnswer ? '✅ **Correct Answer!**' : '❌ **Incorrect Answer.**') : ''}
+        </div>
+        <div class="explanation ${userAnswers[qNum] !== undefined ? '' : 'hidden'}" id="exp-${qNum}">
             <strong>Explanation:</strong> ${q.explanation}
         </div>
     `;
+    
+    // إذا كان السؤال قد تم فحصه، اضبط الحالة لـ checked
+    if (userAnswers[qNum] !== undefined) {
+        questionChecked = true; 
+    } else {
+        setupAnswerListeners(); 
+    }
+    
     updateControls();
 }
 
-
-function navigateQuestion(direction) {
+function checkAnswerAndReveal() {
     const qNum = currentQuestionIndex;
+    const q = currentQuestions[qNum];
     const answerContainer = questionsDisplay.querySelector('.answers');
     const selector = `input[name=question${qNum}]:checked`;
-    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-
-    // التحقق من الإجابة عند الانتقال للأمام فقط (ما لم يكن السؤال الأخير وتم الضغط على Submit)
-    if (direction > 0 && !userAnswer && currentQuestionIndex < currentQuestions.length) {
-        alert("Please select an answer before proceeding.");
+    const userAnswerInput = answerContainer.querySelector(selector);
+    const feedbackDiv = document.getElementById(`feedback-${qNum}`);
+    
+    if (!userAnswerInput) {
+        alert("Please select an answer before checking.");
         return;
     }
 
-    if (userAnswer) {
-        userAnswers[qNum] = userAnswer;
-    }
+    const userAnswer = userAnswerInput.value;
+    userAnswers[qNum] = userAnswer; 
 
-    currentQuestionIndex += direction;
-
-    if (currentQuestionIndex < 0) {
-        // العودة إلى المرحلة 3
-        navigateStep(-1);
-    } 
-    else if (currentQuestionIndex >= currentQuestions.length) {
-        // الانتقال إلى مرحلة التحقق (Submit)
-        checkAnswers();
+    questionChecked = true; 
+    
+    const isCorrect = userAnswer === q.correctAnswer;
+    
+    // Display immediate feedback
+    feedbackDiv.innerHTML = isCorrect ? '✅ **Correct Answer!**' : '❌ **Incorrect Answer.**';
+    feedbackDiv.style.color = isCorrect ? 'green' : 'red';
+    feedbackDiv.style.display = 'block';
+    
+    // Highlight correct answer
+    const correctLabel = answerContainer.querySelector(`input[value=${q.correctAnswer}]`).parentNode;
+    if(correctLabel) {
+        correctLabel.style.backgroundColor = '#d1ffc9'; // Light Green
+        correctLabel.style.fontWeight = 'bold';
     }
-    else {
-        // عرض السؤال التالي/السابق
+    
+    // Highlight incorrect user answer (if incorrect)
+    if (!isCorrect) {
+        const incorrectLabel = userAnswerInput.parentNode;
+        if(incorrectLabel) {
+            incorrectLabel.style.backgroundColor = '#ffc9c9'; // Light Red
+        }
+    }
+    
+    // Display explanation
+    document.getElementById(`exp-${qNum}`).classList.remove('hidden');
+
+    // Disable all radio buttons
+    answerContainer.querySelectorAll('input').forEach(input => input.disabled = true);
+    
+    updateControls(); 
+}
+
+function continueQuizOrSubmit() {
+    currentQuestionIndex++;
+    
+    if (currentQuestionIndex >= currentQuestions.length) {
+        // آخر سؤال تم الإجابة عليه، انتقل إلى ملخص النتائج النهائية
+        showFinalSummary(); 
+    } else {
+        // انتقل إلى السؤال التالي
         showQuestion();
     }
 }
 
-
-function checkAnswers() {
-    if (quizSubmitted) return;
-    
+function showFinalSummary() {
     questionsDisplay.innerHTML = '';
     quizSubmitted = true;
     
@@ -433,28 +474,33 @@ function checkAnswers() {
 
     resultContainer.innerHTML = `You scored ${numCorrect} out of ${totalQuestions}.`;
     
-    updateControls(); 
+    updateControls();
+}
+
+// دالة checkAnswers القديمة لضمان عدم حدوث خطأ إذا تم استدعاؤها
+function checkAnswers() {
+    showFinalSummary();
 }
 
 
-// --- Controls Update ---
+// --- Controls Update (منطق الأزرار الديناميكي) ---
 
 function updateControls() {
     const isQuizStage = currentStep === 4 && !quizSubmitted;
-    const isInitialStage = currentStep < 4;
 
-    // التحكم في الأزرار في المراحل الأولية
-    if (isInitialStage) {
+    // المراحل الأولية (1، 2، 3)
+    if (currentStep < 4) {
         prevBtn.classList.toggle('hidden', currentStep <= 1);
-        nextBtn.classList.add('hidden'); // يتم الانتقال بالضغط على المربع في هذه المراحل
+        nextBtn.classList.add('hidden'); 
         submitBtn.classList.add('hidden');
         
         // إعادة تعيين وظيفة زر السابق للمراحل الأولية
         prevBtn.onclick = () => navigateStep(-1); 
+        nextBtn.onclick = () => navigateStep(1); // تم إظهار زر Next في HTML مؤخراً، نعد وظيفته للمراحل الأولية
         return;
     }
 
-    // التحكم في الأزرار بعد التسليم
+    // بعد التسليم النهائي
     if (quizSubmitted) {
         prevBtn.classList.add('hidden');
         nextBtn.classList.add('hidden');
@@ -462,43 +508,52 @@ function updateControls() {
         return;
     }
 
-    // التحكم في الأزرار داخل مرحلة الأسئلة
+    // داخل مرحلة الأسئلة (4)
     if (isQuizStage) {
+        const isLastQuestion = currentQuestionIndex === currentQuestions.length - 1;
+        const answerSelected = questionsDisplay.querySelector(`input[name=question${currentQuestionIndex}]:checked`);
+
+        submitBtn.classList.add('hidden');
+
         // زر السابق (Previous)
-        // يتم إخفاؤه في أول سؤال، ويظهر في باقي الأسئلة
         prevBtn.classList.toggle('hidden', currentQuestionIndex === 0);
-        prevBtn.onclick = () => navigateQuestion(-1);
-        
-        // زر التالي / التسليم
-        if (currentQuestionIndex < currentQuestions.length - 1) {
-            // لم نصل إلى السؤال الأخير بعد
-            nextBtn.classList.remove('hidden');
-            nextBtn.textContent = 'Next Question';
-            nextBtn.onclick = () => navigateQuestion(1);
-            submitBtn.classList.add('hidden');
+        prevBtn.onclick = () => {
+            currentQuestionIndex--;
+            showQuestion();
+        };
+
+        // زر التالي (Check/Continue)
+        nextBtn.classList.remove('hidden');
+
+        if (!questionChecked) {
+            // الحالة 1: بانتظار التحقق
+            nextBtn.textContent = 'Check Answer';
+            // تفعيل الزر فقط إذا تم اختيار إجابة
+            nextBtn.disabled = !answerSelected;
+            nextBtn.onclick = checkAnswerAndReveal;
         } else {
-            // السؤال الأخير - عرض زر التسليم
-            nextBtn.classList.add('hidden');
-            submitBtn.classList.remove('hidden');
-            submitBtn.textContent = 'Submit Quiz';
-            // نستخدم navigateQuestion(1) كـ action ليقوم بحفظ الإجابة ثم الانتقال إلى checkAnswers
-            submitBtn.onclick = () => navigateQuestion(1); 
-            submitBtn.disabled = false;
+            // الحالة 2: بانتظار المتابعة للسؤال التالي
+            nextBtn.disabled = false;
+            if (isLastQuestion) {
+                nextBtn.textContent = 'Finish Quiz & See Results';
+            } else {
+                nextBtn.textContent = 'Continue (Next Question)';
+            }
+            nextBtn.onclick = continueQuizOrSubmit;
         }
     }
 }
 
 
-// --- Initial Setup (معدل لضمان ظهور الصفحة 1) ---
+// --- Initial Setup ---
 document.addEventListener('DOMContentLoaded', () => {
-    // إخفاء جميع المراحل ما عدا الأولى (يجب أن تكون المرحلة 1 ظاهرة في HTML أساساً)
+    // إخفاء جميع المراحل ما عدا الأولى
     document.querySelectorAll('.step').forEach((step, index) => {
         if (index > 0) {
             step.classList.add('hidden');
         }
     });
 
-    // تحديث أزرار التحكم لعرض الحالة الأولية (المرحلة 1)
     currentStep = 1;
     updateControls();
     
