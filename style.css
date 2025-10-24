@@ -99,7 +99,6 @@ body {
     color: #333;
 }
 
-/* تنسيق خيارات الإجابات */
 .answers label {
     display: block;
     margin: 8px 0;
@@ -114,26 +113,15 @@ body {
     background-color: #f0f0f0;
 }
 
-/* تنسيق التقييم الفوري (Feedback) */
-.feedback-message {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin: 15px 0;
-    padding: 10px;
-    border-radius: 6px;
-    background-color: #f7f7f7;
-    text-align: center;
-}
-
-/* Explanation Styling */
+/* Explanation Styling - يستخدم فقط في صفحة الملخص النهائية هنا */
 .explanation {
-    margin-top: 15px;
-    padding: 15px;
-    background-color: #f0f0ff; 
-    border-left: 5px solid #4682B4;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff0e0; 
+    border-left: 5px solid #ff9900;
     border-radius: 4px;
-    font-style: normal;
-    color: #333;
+    font-style: italic;
+    color: #555;
     display: none; 
 }
 
@@ -165,14 +153,10 @@ body {
 }
 
 #prev-btn { background-color: #6c757d; color: white; }
-#next-btn { 
-    background-color: #4682B4; 
-    color: white; 
-    width: auto; 
-    min-width: 180px;
-}
+#next-btn { background-color: #4682B4; color: white; }
+#submit-btn { background-color: #28a745; color: white; width: 100%; }
 
-/* تنسيقات عرض النتائج النهائية */
+/* تنسيقات إضافية لعرض النتائج */
 .correct-answer {
     color: green;
     font-weight: bold;
@@ -187,4 +171,9 @@ body {
     background-color: #ffe6e6;
     padding: 5px;
     border-radius: 4px;
+}
+
+.unanswered-answer {
+    color: orange;
+    font-weight: bold;
 }
