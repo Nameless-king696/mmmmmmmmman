@@ -19,9 +19,9 @@ body {
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     
-    /* تغيير: استخدام عرض مرن (95%) بحد أقصى 800 بكسل */
+    /* استخدام عرض مرن (95%) بحد أقصى 800 بكسل للتجاوب */
     width: 95%; 
-    max-width: 800px; /* هذا هو أقصى حجم سيصل إليه على شاشات الكمبيوتر */
+    max-width: 800px; 
     
     opacity: 0.95;
     margin-left: auto;
@@ -59,7 +59,6 @@ body {
 
 /* Stage 2 & 3: Selection Boxes (Vertical) */
 .year-selection, .subject-selection {
-    /* تغيير: استخدام عرض مرن (100%) ليتجاوب مع حجم الحاوية (Container) */
     display: block; 
     width: 100%; 
     margin: 20px auto; 
@@ -77,7 +76,7 @@ body {
     font-weight: bold;
     transition: all 0.3s;
     margin-bottom: 15px; 
-    box-sizing: border-box; /* لضمان أن الـ padding لا يزيد العرض الكلي عن 100% */
+    box-sizing: border-box;
 }
 
 .year-box:hover, .subject-box:hover {
@@ -157,3 +156,25 @@ body {
 #prev-btn { background-color: #6c757d; color: white; }
 #next-btn { background-color: #4682B4; color: white; }
 #submit-btn { background-color: #28a745; color: white; width: 100%; }
+
+/* تنسيقات إضافية لعرض النتائج */
+.correct-answer {
+    color: green;
+    font-weight: bold;
+    background-color: #e6ffe6;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.incorrect-answer {
+    color: red;
+    font-weight: bold;
+    background-color: #ffe6e6;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.unanswered-answer {
+    color: orange;
+    font-weight: bold;
+}
